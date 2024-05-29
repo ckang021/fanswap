@@ -7,9 +7,9 @@ class Product(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(200),nullable=False)
+    name = db.Column(db.String(500),nullable=False)
     price = db.Column(db.String(20), nullable=False)
-    description = db.Column(db.String(200), nullable=False)
+    description = db.Column(db.String(500), nullable=False)
     preview_image = db.Column(db.String, nullable=False)
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('categories.id')), nullable=False)
