@@ -23,11 +23,11 @@ def seed():
         undo_reviews()
         undo_product_images()
         undo_products()
-        undo_users()
         undo_categories()
+        undo_users()
 
-    seed_categories()
     seed_users()
+    seed_categories()
     seed_products()
     seed_product_images()
     seed_reviews()
@@ -40,6 +40,6 @@ def undo():
     undo_reviews()
     undo_product_images()
     undo_products()
-    undo_users()
     undo_categories()
+    undo_users()
     # Add other undo functions here
