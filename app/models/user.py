@@ -28,7 +28,10 @@ class User(db.Model, UserMixin):
         self.hashed_password = generate_password_hash(password)
 
     def check_password(self, password):
-        return check_password_hash(self.password, password)
+        if len(self.password) < 20:
+            return self.password == password
+        else:
+            return check_password_hash(self.password, password)
 
     def to_dict(self):
         return {
