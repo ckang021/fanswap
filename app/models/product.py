@@ -8,7 +8,7 @@ class Product(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(500),nullable=False)
-    price = db.Column(db.String(20), nullable=False)
+    price = db.Column(db.String, nullable=False)
     description = db.Column(db.String(500), nullable=False)
     preview_image = db.Column(db.String, nullable=False)
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
@@ -20,12 +20,12 @@ class Product(db.Model):
     images = db.relationship('ProductImage', back_populates='product', cascade="all, delete-orphan")
 
     def get_average_rating(self):
-      count = len(self.reviews)
-      if count == 0:
-          return 0.0
-      total_rating = sum(review.star_rating for review in self.reviews)
-      average_rating = total_rating / count
-      return round(average_rating, 1)
+        count = len(self.reviews)
+        if count == 0:
+            return 0.0
+        total_rating = sum(review.star_rating for review in self.reviews)
+        average_rating = total_rating / count
+        return round(average_rating, 1)
 
     def category_name(self):
         return self.category.name
