@@ -51,6 +51,7 @@ def new_product():
   if form.validate_on_submit():
     image = form.data['preview_image']
     url = None
+    print('IMAGE ===> ', image)
 
     if image:
       image.filename = get_unique_filename(image.filename)

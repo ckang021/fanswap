@@ -6,9 +6,21 @@ import {
 } from "redux";
 import thunk from "redux-thunk";
 import sessionReducer from "./session";
+import productReducer from "./product";
+import productsReducer from "./products";
+import imagesReducer from "./images";
+import imageReducer from "./image";
+import reviewReducer from "./review";
+import reviewsReducer from "./reviews";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
+  product: productReducer,
+  products: productsReducer,
+  images: imagesReducer,
+  image: imageReducer,
+  review: reviewReducer,
+  reviews: reviewsReducer
 });
 
 let enhancer;
