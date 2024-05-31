@@ -39,7 +39,7 @@ export const deleteImage = (imageId) => async (dispatch) => {
 
   const data = await res.json();
   if (res.ok) {
-    dispatch(removeImage(imageId)); //potential bug??
+    dispatch(removeImage(data));
     return data;
   } else {
     return data;
@@ -57,18 +57,16 @@ export const soloImage = (imageId) => async (dispatch) => {
   }
 }
 
-const initState = { images: {}, singleImage: null }
+const initState = {}
 
 const imageReducer = (state = initState, action) => {
   switch (action.type) {
     case NEW_IMAGE:
-      return { ...state, images: { ...state.images, [action.image.id]: action.image } }
+      return { ...state, images: action.image }
     case DELETE_IMAGE:
-      const newState = { ...state };
-      delete newState.images[action.imageId];
-      return newState
+      return { ...state, images: action.image }
     case SOLO_IMAGE:
-      return { ...state, singleImage: action.image }
+      return { ...state, images: action.image }
     default:
       return state;
   }

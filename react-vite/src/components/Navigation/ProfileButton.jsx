@@ -6,12 +6,14 @@ import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import "./ProfileButton.css"
+import { useNavigate } from "react-router-dom";
 
 function ProfileButton() {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const user = useSelector((store) => store.session.user);
   const ulRef = useRef();
+  const navigate = useNavigate()
 
   const toggleMenu = (e) => {
     e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
@@ -37,8 +39,21 @@ function ProfileButton() {
   const logout = (e) => {
     e.preventDefault();
     dispatch(thunkLogout());
+    navigate("/")
     closeMenu();
   };
+
+  const manageProducts = (e) => {
+    e.preventDefault()
+    navigate("/products/my-products")
+    closeMenu();
+  }
+
+  const createProduct = (e) => {
+    e.preventDefault()
+    navigate("/products/new-product")
+    closeMenu();
+  }
 
   return (
     <>
@@ -51,6 +66,12 @@ function ProfileButton() {
             <>
               <li>{user.username}</li>
               <li>{user.email}</li>
+              <li>
+                <button onClick={createProduct}>Create Product</button>
+              </li>
+              <li>
+                <button onClick={manageProducts}>Manage Products</button>
+              </li>
               <li>
                 <button onClick={logout}>Log Out</button>
               </li>
