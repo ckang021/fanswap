@@ -29,9 +29,6 @@ def all_products():
 
     products = query.all()
 
-    print(f"Search Query: {search_name}")
-    print(f"Found Products: {[product.name for product in products]}")
-
     return {
         'products': [product.to_dict() for product in products]
     }
