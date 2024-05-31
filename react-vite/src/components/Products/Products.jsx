@@ -15,7 +15,6 @@ function Products() {
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      console.log(`Querying with search term: ${querySearch}`);
       if (querySearch) {
         await dispatch(productSearch(querySearch));
       } else {
