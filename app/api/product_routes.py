@@ -16,17 +16,26 @@ def authorize(owner_id):
 # PRODUCT ROUTE (CRUD)
 @product_routes.route('/')
 def all_products():
-  search_name = request.args.get('name')
-  query = Product.query
+    search_name = request.args.get('name')
+    query = Product.query.join(Category)
 
-  if search_name:
-      query = query.filter(Product.name.ilike(f'%{search_name}%'))
+    if search_name:
+        query = query.filter(
+            db.or_(
+                Product.name.ilike(f'%{search_name}%'),
+                Category.name.ilike(f'%{search_name}%')
+            )
+        )
 
-  products = query.all()
+    products = query.all()
 
-  return {
-      'products': [product.to_dict() for product in products]
-  }
+    print(f"Search Query: {search_name}")
+    print(f"Found Products: {[product.name for product in products]}")
+
+    return {
+        'products': [product.to_dict() for product in products]
+    }
+
 
 
 @product_routes.route('/my-products')
