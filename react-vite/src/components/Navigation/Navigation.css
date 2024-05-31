@@ -1,3 +1,22 @@
 .profile-dropdown {
   position: absolute;
 }
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type: none;
+  padding: 20px;
+  background-color: #08203F;
+}
+
+#nav-logo {
+  height: 60px;
+}
+
+#profile-cart-button {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
