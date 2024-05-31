@@ -76,28 +76,28 @@ export const removeReview = (reviewId) => async (dispatch) => {
   })
   const data = await res.json()
   if (res.ok) {
-    dispatch(deleteReview(reviewId)) //potential bug??
+    dispatch(deleteReview(data))
     return data;
   } else {
     return data;
   }
 }
 
-const initState = { oneReview: {}, allReviews: [] };
+const initState = {};
 
 const reviewReducer = (state = initState, action) => {
   switch (action.type) {
     case SOLO_REVIEW:
-      return { ...state, oneReview: action.review }
+      return { ...state, review: action.review };
     case CREATE_REVIEW:
-      return { ...state, allReviews: [...state.allReviews, action.review], oneReview: action.review }
+      return { ...state, review: action.review };
     case EDIT_REVIEW:
-      return { ...state, allReviews: state.allReviews.map((review) => review.id === action.review.id ? action.review : review), oneReview: action.review }
+      return { ...state, review: action.review };
     case DELETE_REVIEW:
-      return { ...state, allReviews: state.allReviews.filter((review) => review.id !== action.reviewId), oneReview: state.oneReview.id === action.reviewId ? {} : state.oneReview }
+      return { ...state, review: action.review };
     default:
       return state;
   }
-}
+};
 
 export default reviewReducer

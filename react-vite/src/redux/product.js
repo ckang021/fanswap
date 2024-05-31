@@ -72,40 +72,23 @@ export const removeProduct = (id) => async (dispatch) => {
 
   const data = await res.json()
   if (res.ok) {
-    dispatch(deleteProduct(id)); //potential bug??
+    dispatch(deleteProduct(data));
   }
   return data;
 }
 
-const initState = { oneProduct: null, allProducts: {} };
+const initState = {};
 
 const productReducer = (state = initState, action) => {
   switch (action.type) {
     case SINGLE_PRODUCT:
-      return {
-        ...state,
-        oneProduct: action.product,
-        allProducts: { ...state.allProducts, [action.product.id]: action.product }
-      };
+      return { ...state, product: action.product };
     case CREATE_PRODUCT:
-      return {
-        ...state,
-        oneProduct: action.product,
-        allProducts: { ...state.allProducts, [action.product.id]: action.product }
-      };
+      return { ...state, product: action.product };
     case EDIT_PRODUCT:
-      return {
-        ...state,
-        oneProduct: action.product,
-        allProducts: { ...state.allProducts, [action.product.id]: action.product }
-      };
+      return { ...state, product: action.product };
     case DELETE_PRODUCT:
-      const newState = { ...state };
-      delete newState.allProducts[action.productId];
-      if (newState.oneProduct?.id === action.productId) {
-        newState.oneProduct = null;
-      }
-      return newState;
+      return { ...state, product: null }
     default:
       return state;
   }

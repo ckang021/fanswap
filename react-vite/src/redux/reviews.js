@@ -16,7 +16,7 @@ export const allProdReviews = (id) => async (dispatch) => {
   }
 }
 
-const initState = { reviews: [] };
+const initState = {};
 
 const reviewsReducer = (state = initState, action) => {
   switch (action.type) {

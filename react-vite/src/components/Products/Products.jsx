@@ -30,7 +30,7 @@ function Products() {
     if (!querySearch && searchResults.length > 0) {
       dispatch(everyProducts());
     }
-  }, [dispatch, querySearch, searchResults.length]);
+  }, [dispatch, querySearch, searchResults.length]); //dispatches again so that it reloads when you go back!!
 
   const productList = querySearch ? searchResults : allProducts;
 
@@ -53,6 +53,7 @@ function Products() {
                 <div>
                   <p>{product.name}</p>
                   <p>{product.price}</p>
+                  <p>{product.rating}</p>
                 </div>
               </NavLink>
             </div>
