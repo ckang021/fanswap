@@ -42,7 +42,7 @@ export const productSearch = (query) => async (dispatch) => {
       throw new Error('Failed to search products');
     }
     const data = await res.json();
-    dispatch(searchProducts(data.products));
+    dispatch(searchProducts(data.products || []));
     return data.products;
   } catch (error) {
     console.error(error);

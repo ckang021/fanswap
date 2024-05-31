@@ -15,6 +15,7 @@ function Products() {
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
+      console.log(`Querying with search term: ${querySearch}`);
       if (querySearch) {
         await dispatch(productSearch(querySearch));
       } else {
@@ -32,7 +33,7 @@ function Products() {
     }
   }, [dispatch, querySearch, searchResults.length]);
 
-  const productList = querySearch && searchResults.length > 0 ? searchResults : allProducts;
+  const productList = querySearch ? searchResults : allProducts;
 
   return isLoading ? (
     <div className="loading-container">
