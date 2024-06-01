@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from .aws_helpers import (upload_file_to_s3, get_unique_filename)
 from ..models import db, Product, ProductImage, Review, Category
 from ..forms import ProductForm, ProductImageForm, ReviewForm
+import base64
 
 product_routes = Blueprint('product', __name__)
 
@@ -28,6 +29,10 @@ def all_products():
         )
 
     products = query.all()
+
+    # print({
+    #     'products': [product.to_dict() for product in products]
+    # })
 
     return {
         'products': [product.to_dict() for product in products]

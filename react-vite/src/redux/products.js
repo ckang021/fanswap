@@ -18,7 +18,7 @@ const searchProducts = (products) => ({
 })
 
 export const everyProducts = () => async (dispatch) => {
-  const res = await fetch(`/api/products`);
+  const res = await fetch(`/api/products/`);
   const data = await res.json()
   if (res.ok) {
     dispatch(loadProducts(data));

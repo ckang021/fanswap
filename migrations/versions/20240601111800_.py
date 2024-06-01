@@ -1,19 +1,16 @@
 """empty message
 
-Revision ID: 321e9b826b1a
-Revises:
-Create Date: 2024-05-28 17:50:04.745029
+Revision ID: e48e1d0fad45
+Revises: 
+Create Date: 2024-06-01 11:18:00.563583
 
 """
 from alembic import op
 import sqlalchemy as sa
-import os
 
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = '321e9b826b1a'
+revision = 'e48e1d0fad45'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -40,7 +37,7 @@ def upgrade():
     op.create_table('products',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=500), nullable=False),
-    sa.Column('price', sa.String(length=20), nullable=False),
+    sa.Column('price', sa.String(), nullable=False),
     sa.Column('description', sa.String(length=500), nullable=False),
     sa.Column('preview_image', sa.String(), nullable=False),
     sa.Column('owner_id', sa.Integer(), nullable=False),
@@ -66,12 +63,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    # ### end Alembic commands ###
-
-    # Create a schema (only in production)
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-
     # ### end Alembic commands ###
 
 
