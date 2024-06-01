@@ -1,25 +1,22 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { createReviewThunk, editReviewByIdThunk, getReviewByIdThunk } from '../../redux/review';
-import './ReviewForm.css'
+import { addReview, updateReview } from '../../redux/review';
+import './ReviewForm.css';
+
 const ReviewForm = ({ review }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [reviewText, setReviewText] = useState(review ? review[0]?.review : '');
-  const [starRating, setStarRating] = useState(review ? review[0]?.star_rating : 1);
-  const [errors, setErrors] = useState({});
-  const { busId } = useParams()
+  const { productId, reviewId } = useParams();
   const user = useSelector(state => state.session.user);
-  const { reviewId } = useParams()
+
+  const [reviewText, setReviewText] = useState(review ? review.review : '');
+  const [starRating, setStarRating] = useState(review ? review.star_rating : 1);
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     if (!user) navigate('/');
   }, [user, navigate]);
-
-  useEffect(() => {
-    dispatch(getReviewByIdThunk(reviewId))
-  }, [dispatch, reviewId])
 
   const validateForm = () => {
     const newErrors = {};
@@ -35,29 +32,29 @@ const ReviewForm = ({ review }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validateForm()) return
+    if (!validateForm()) return;
 
     const reviewObj = {
       review: reviewText,
       star_rating: starRating
     };
 
-    const data = review ? await dispatch(editReviewByIdThunk(reviewId, reviewObj))
-      : await dispatch(createReviewThunk(busId, reviewObj));
+    const data = review ? await dispatch(updateReview(reviewId, reviewObj))
+      : await dispatch(addReview(productId, reviewObj));
 
     if (data.errors) {
       setErrors(data.errors);
     } else {
-      navigate(`/bus/${busId}`)
+      navigate(`/products/${productId}`);
     }
   };
 
   return (
     <div className='reviewForm'>
-      <h1 className=''>{review ? 'Update your review' : 'Create a review'}</h1>
+      <h1>{review ? 'Update your review' : 'Create a review'}</h1>
       <form onSubmit={handleSubmit}>
         <section className='form-section'>
-          <h3>{"Your review"}</h3>
+          <h3>Your review</h3>
           <textarea
             value={reviewText}
             onChange={(e) => setReviewText(e.target.value)}
@@ -66,25 +63,24 @@ const ReviewForm = ({ review }) => {
           {errors.review && <p className="error">{errors.review}</p>}
         </section>
         <section className='form-section-star'>
-          <h3>{"Star Rating: "}</h3>
-          <div onClick={() => setStarRating(1)} className={starRating > 0 ? 'star active' : 'star'} />
-          <div onClick={() => setStarRating(2)} className={starRating > 1 ? 'star active' : 'star'} />
-          <div onClick={() => setStarRating(3)} className={starRating > 2 ? 'star active' : 'star'} />
-          <div onClick={() => setStarRating(4)} className={starRating > 3 ? 'star active' : 'star'} />
-          <div onClick={() => setStarRating(5)} className={starRating > 4 ? 'star active' : 'star'} />
+          <h3>Star Rating:</h3>
+          <div onClick={() => setStarRating(1)} className={starRating >= 1 ? 'star active' : 'star'} />
+          <div onClick={() => setStarRating(2)} className={starRating >= 2 ? 'star active' : 'star'} />
+          <div onClick={() => setStarRating(3)} className={starRating >= 3 ? 'star active' : 'star'} />
+          <div onClick={() => setStarRating(4)} className={starRating >= 4 ? 'star active' : 'star'} />
+          <div onClick={() => setStarRating(5)} className={starRating >= 5 ? 'star active' : 'star'} />
           <input
             type="number"
             id='star-numbers'
             value={starRating}
-            onChange={(e) => setStarRating(e.target.value)}
+            onChange={(e) => setStarRating(Number(e.target.value))}
             min="1"
             max="5"
           />
-
           {errors.star_rating && <p className="error">{errors.star_rating}</p>}
         </section>
         <button type='submit'>
-          {review ? `Update Review` : `Create Review`}
+          {review ? 'Update Review' : 'Create Review'}
         </button>
       </form>
     </div>

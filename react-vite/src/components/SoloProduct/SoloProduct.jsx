@@ -9,6 +9,7 @@ import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import "./SoloProduct.css";
 import DeleteProduct from "../DeleteProduct/DeleteProduct";
 import AddProductImage from "../AddProductImage";
+import ReviewForm from "../ReviewForm";
 
 function SoloProduct() {
   const { productId } = useParams();
@@ -64,6 +65,11 @@ function SoloProduct() {
     navigate(`/products/${productId}/edit`);
   };
 
+  const addReview = (e) => {
+    e.preventDefault()
+    navigate(`/products/${productId}/reviews/new`)
+  }
+
   // const imageArray = product?.preview_image
   //   ? [{ image_file: product.preview_image }, ...(images?.ProductImages || [])]
   //   : images?.ProductImages || [];
@@ -105,10 +111,6 @@ function SoloProduct() {
       </div>
       <div className="product-details-text">
         <div className="manage-products-buttons">
-          {sessionUser && sessionUser.id !== product?.owner_id &&
-            !reviews?.reviews.find(review => review.user_id === sessionUser.id) && (
-              <button>Write Review</button>
-            )}
           {sessionUser && sessionUser.id === product?.owner_id && (
             <button onClick={editProduct}>Update Product</button>
           )}
@@ -135,6 +137,10 @@ function SoloProduct() {
 
         <div className="product-reviews">
           <h2>Reviews</h2>
+          {sessionUser && sessionUser.id !== product?.owner_id &&
+            !reviews?.reviews.find(review => review.user_id === sessionUser.id) && (
+              <button onClick={addReview}>Write a Review</button>
+            )}
           {!reviews?.reviews.length && <p>Be the first to post a review!</p>}
           {reviews?.reviews && reviews?.reviews.map(review => {
             const user = userList ? userList.find(user => user.id == review.user_id) : null;
@@ -149,7 +155,7 @@ function SoloProduct() {
                 {sessionUser && review.user_id === sessionUser.id && (
                   <div className="review-edit-delete-buttons">
                     {/* <OpenModalButton buttonText='Delete' modalComponent={<DeleteReview productId={productId} reviewId={review.id} />} /> */}
-                    <button>Edit</button>
+                    <button onClick={() => navigate(`/products/${productId}/reviews/${review.id}/edit`)}>Edit</button>
                   </div>
                 )}
               </div>

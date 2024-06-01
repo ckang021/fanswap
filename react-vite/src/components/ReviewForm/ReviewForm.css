@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+.form-section-star {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.stars {
+  display: flex;
+  width: min-content;
+  cursor: pointer;
+}
+
+.star {
+  width: 20px;
+  height: 20px;
+  margin: 3px;
+  background-color: rgb(75, 75, 75);
+  clip-path: polygon(50% 0%,
+      61% 35%,
+      98% 35%,
+      68% 57%,
+      79% 91%,
+      50% 70%,
+      21% 91%,
+      32% 57%,
+      2% 35%,
+      39% 35%);
+  cursor: pointer;
+}
+
+.star :hover {
+  width: 25px;
+  height: 25px;
+}
+
+.star.active {
+  background-color: gold;
+}
+
+#star-numbers {
+  font-family: Rubik;
+  text-align: center;
+  border: none;
+  padding: 6px;
+  background-color: #E7E7E7;
+  border-radius: 20px;
+}
+
+.error {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 0.5em;
+}

@@ -8,6 +8,8 @@ import SoloProduct from '../components/SoloProduct';
 import ManageProducts from '../components/ManageProducts/ManageProducts';
 import ProductForm from '../components/ProductForm/ProductForm';
 import EditProduct from '../components/EditProduct/EditProduct';
+import ReviewForm from '../components/ReviewForm';
+import EditReview from '../components/EditReview';
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +46,14 @@ export const router = createBrowserRouter([
       {
         path: "/products/:productId/edit",
         element: <EditProduct />
+      },
+      {
+        path: "/products/:productId/reviews/new",
+        element: <ReviewForm />
+      },
+      {
+        path: "/products/:productId/reviews/:reviewId/edit",
+        element: <EditReview />
       }
     ],
   },
