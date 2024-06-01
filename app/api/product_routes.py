@@ -30,15 +30,9 @@ def all_products():
 
     products = query.all()
 
-    # print({
-    #     'products': [product.to_dict() for product in products]
-    # })
-
     return {
         'products': [product.to_dict() for product in products]
     }
-
-
 
 @product_routes.route('/my-products')
 @login_required
