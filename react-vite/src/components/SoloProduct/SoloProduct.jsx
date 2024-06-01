@@ -9,7 +9,7 @@ import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import "./SoloProduct.css";
 import DeleteProduct from "../DeleteProduct/DeleteProduct";
 import AddProductImage from "../AddProductImage";
-import ReviewForm from "../ReviewForm";
+import DeleteReview from "../DeleteReview";
 
 function SoloProduct() {
   const { productId } = useParams();
@@ -154,8 +154,8 @@ function SoloProduct() {
                 </div>
                 {sessionUser && review.user_id === sessionUser.id && (
                   <div className="review-edit-delete-buttons">
-                    {/* <OpenModalButton buttonText='Delete' modalComponent={<DeleteReview productId={productId} reviewId={review.id} />} /> */}
                     <button onClick={() => navigate(`/products/${productId}/reviews/${review.id}/edit`)}>Edit</button>
+                    <OpenModalButton buttonText='Delete' modalComponent={<DeleteReview productId={productId} reviewId={review.id} />} />
                   </div>
                 )}
               </div>
