@@ -18,7 +18,7 @@ const singleImage = (image) => ({
 })
 
 export const addImage = (productId, formData) => async (dispatch) => {
-  const res = await fetch(`/api/product/${productId}/imgs/new`, {
+  const res = await fetch(`/api/products/${productId}/imgs/new`, {
     method: 'POST',
     body: formData,
   })

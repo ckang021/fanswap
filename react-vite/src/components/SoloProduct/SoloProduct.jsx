@@ -7,14 +7,16 @@ import { allProdReviews } from "../../redux/reviews";
 import { FaStar } from "react-icons/fa";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import "./SoloProduct.css";
+import DeleteProduct from "../DeleteProduct/DeleteProduct";
+import AddProductImage from "../AddProductImage";
 
 function SoloProduct() {
   const { productId } = useParams();
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [mainImage, setMainImage] = useState("");
-  const [userList, setUserList] = useState([])
+  const [userList, setUserList] = useState([]);
   const sessionUser = useSelector(state => state.session.user);
   const product = useSelector(state => state.product?.product?.product);
   const images = useSelector(state => state.images?.images);
@@ -22,7 +24,7 @@ function SoloProduct() {
 
   useEffect(() => {
     async function fetchProdData() {
-      setIsLoading(true)
+      setIsLoading(true);
       await dispatch(soloProduct(productId));
       await dispatch(allProdImages(productId));
       await dispatch(allProdReviews(productId));
@@ -33,12 +35,12 @@ function SoloProduct() {
 
   useEffect(() => {
     async function fetchUserData() {
-      const res = await fetch('/api/users')
-      const data = await res.json()
-      setUserList(data.users)
+      const res = await fetch('/api/users');
+      const data = await res.json();
+      setUserList(data.users);
     }
-    fetchUserData()
-  }, [])
+    fetchUserData();
+  }, []);
 
   useEffect(() => {
     if (product && product.preview_image) {
@@ -58,9 +60,18 @@ function SoloProduct() {
   };
 
   const editProduct = (e) => {
-    e.preventDefault()
-    navigate(`/products/${productId}/edit`)
-  }
+    e.preventDefault();
+    navigate(`/products/${productId}/edit`);
+  };
+
+  const imageArray = product?.preview_image
+    ? [{ image_file: product.preview_image }, ...(images?.ProductImages || [])]
+    : images?.ProductImages || [];
+
+  // Filter out the duplicate preview image from the subimage list
+  const filteredImageArray = images?.ProductImages
+    ? images.ProductImages.filter((image) => image.image_file !== product?.preview_image)
+    : [];
 
   return isLoading ? (
     <div className="loading-container">
@@ -74,7 +85,16 @@ function SoloProduct() {
           {mainImage && <img src={mainImage} alt="Main product" className="main-image-pd" />}
         </div>
         <div className="sub-image-bottom">
-          {images?.ProductImages?.map((image, index) => (
+          {/* Always include the preview image as the first subimage */}
+          {product?.preview_image && (
+            <img
+              src={product.preview_image}
+              alt="Preview product"
+              className={`sub-image-pd ${product.preview_image === mainImage ? "selected-image" : ""}`}
+              onClick={() => handleImageClick({ image_file: product.preview_image })}
+            />
+          )}
+          {filteredImageArray.map((image, index) => (
             <img
               key={index}
               src={image.image_file}
@@ -86,33 +106,33 @@ function SoloProduct() {
         </div>
       </div>
       <div className="product-details-text">
-
         <div className="manage-products-buttons">
-          {
-            sessionUser && sessionUser.id !== product?.owner_id &&
-            !reviews?.reviews.find(review => review.user_id === sessionUser.id) &&
-            <button>Write Review</button>
-          }
-          {
-            sessionUser && sessionUser.id === product?.owner_id &&
+          {sessionUser && sessionUser.id !== product?.owner_id &&
+            !reviews?.reviews.find(review => review.user_id === sessionUser.id) && (
+              <button>Write Review</button>
+            )}
+          {sessionUser && sessionUser.id === product?.owner_id && (
             <button onClick={editProduct}>Update Product</button>
-          }
-          {
-            sessionUser && sessionUser.id === product?.owner_id &&
-            <button>Delete Product</button>
-          }
-          {
-            sessionUser && sessionUser.id === product?.owner_id &&
-            images?.ProductImages?.length < 3 &&
-            <button>Add Images</button>
-          }
+          )}
+          {sessionUser && sessionUser.id === product?.owner_id && (
+            <OpenModalButton
+              className='delete-product'
+              buttonText='Delete'
+              modalComponent={<DeleteProduct productId={productId} />}
+            />
+          )}
+          {sessionUser && sessionUser.id === product?.owner_id && images?.ProductImages?.length < 2 && (
+            <OpenModalButton
+              className='delete-product'
+              buttonText='Add Images'
+              modalComponent={<AddProductImage productId={productId} />}
+            />
+          )}
         </div>
 
         <h1>{product?.name}</h1>
         {product?.price}
-        <div>
-          {product?.description}
-        </div>
+        <div>{product?.description}</div>
         <button onClick={cartButton}>Add to Cart</button>
 
         <div className="product-reviews">
@@ -123,24 +143,19 @@ function SoloProduct() {
             return (
               <div className="reviewer-box" key={review.id}>
                 <p>{user ? user.username : null}</p>
-
                 <p>{review?.review}</p>
-
                 <div className="star-rating">
                   <FaStar />
                   {review?.star_rating}
                 </div>
-                {
-                  sessionUser && review.user_id === sessionUser.id &&
-                  (
-                    <div className="review-edit-delete-buttons">
-                      {/* <OpenModalButton buttonText='Delete' modalComponent={<DeleteReview productId={productId} reviewId={review.id} />} /> */}
-                      <button>Edit</button>
-                    </div>
-                  )
-                }
+                {sessionUser && review.user_id === sessionUser.id && (
+                  <div className="review-edit-delete-buttons">
+                    {/* <OpenModalButton buttonText='Delete' modalComponent={<DeleteReview productId={productId} reviewId={review.id} />} /> */}
+                    <button>Edit</button>
+                  </div>
+                )}
               </div>
-            )
+            );
           })}
         </div>
       </div>
