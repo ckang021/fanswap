@@ -29,35 +29,48 @@ function Navigation() {
     e.preventDefault()
     alert("Feature coming soon...")
   }
+
+  const directAllProds = (e) => {
+    e.preventDefault()
+    navigate("/products")
+  }
   return (
-    <ul>
-      <div className="nav-bar">
-        <li>
-          <NavLink to="/">
-            <img src={navLogo} alt="fanswap-logo" id="nav-logo" />
-          </NavLink>
-        </li>
+    <div>
+      <ul className="nav-bar-top">
+        <div className="nav-bar">
+          <li>
+            <NavLink to="/">
+              <img src={navLogo} alt="fanswap-logo" id="nav-logo" />
+            </NavLink>
+          </li>
 
-        <li>
-          <form onSubmit={submitSearch}>
-            <input
-              type="text"
-              placeholder="Search for products"
-              value={search}
-              onChange={handleSearch}
-            />
-            <button>Search</button>
-          </form>
-        </li>
+          <li>
+            <form onSubmit={submitSearch}>
+              <input
+                type="text"
+                placeholder="Search for products"
+                value={search}
+                onChange={handleSearch}
+              />
+              <button>Search</button>
+            </form>
+          </li>
 
-        <li id="profile-cart-button">
-          <button onClick={cartButton}>
-            <FaShoppingCart />
-          </button>
-          <ProfileButton />
-        </li>
+          <li id="profile-cart-button">
+            <button onClick={cartButton}>
+              <FaShoppingCart />
+            </button>
+            <ProfileButton />
+          </li>
+        </div>
+      </ul >
+      <div className="nav-bar-bottom">
+        <button onClick={directAllProds}>All Products</button>
+        <button onClick={cartButton}>Hats</button>
+        <button onClick={cartButton}>Jerseys</button>
+        <button onClick={cartButton}>Apparel</button>
       </div>
-    </ul >
+    </div>
   );
 }
 

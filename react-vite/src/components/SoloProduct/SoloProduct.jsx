@@ -64,11 +64,10 @@ function SoloProduct() {
     navigate(`/products/${productId}/edit`);
   };
 
-  const imageArray = product?.preview_image
-    ? [{ image_file: product.preview_image }, ...(images?.ProductImages || [])]
-    : images?.ProductImages || [];
+  // const imageArray = product?.preview_image
+  //   ? [{ image_file: product.preview_image }, ...(images?.ProductImages || [])]
+  //   : images?.ProductImages || [];
 
-  // Filter out the duplicate preview image from the subimage list
   const filteredImageArray = images?.ProductImages
     ? images.ProductImages.filter((image) => image.image_file !== product?.preview_image)
     : [];
@@ -85,7 +84,6 @@ function SoloProduct() {
           {mainImage && <img src={mainImage} alt="Main product" className="main-image-pd" />}
         </div>
         <div className="sub-image-bottom">
-          {/* Always include the preview image as the first subimage */}
           {product?.preview_image && (
             <img
               src={product.preview_image}
