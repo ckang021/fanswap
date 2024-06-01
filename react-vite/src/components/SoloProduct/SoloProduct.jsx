@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { soloProduct } from "../../redux/product";
@@ -11,7 +11,8 @@ import "./SoloProduct.css";
 function SoloProduct() {
   const { productId } = useParams();
   const dispatch = useDispatch();
-  const [isLoaded, setIsLoaded] = useState(true);
+  const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(true);
   const [mainImage, setMainImage] = useState("");
   const [userList, setUserList] = useState([])
   const sessionUser = useSelector(state => state.session.user);
@@ -21,11 +22,11 @@ function SoloProduct() {
 
   useEffect(() => {
     async function fetchProdData() {
-      setIsLoaded(true)
+      setIsLoading(true)
       await dispatch(soloProduct(productId));
       await dispatch(allProdImages(productId));
       await dispatch(allProdReviews(productId));
-      setIsLoaded(false);
+      setIsLoading(false);
     }
     fetchProdData();
   }, [dispatch, productId]);
@@ -40,10 +41,12 @@ function SoloProduct() {
   }, [])
 
   useEffect(() => {
-    if (images?.ProductImages?.length > 0) {
+    if (product && product.preview_image) {
+      setMainImage(product.preview_image);
+    } else if (images?.ProductImages?.length > 0) {
       setMainImage(images.ProductImages[0].image_file);
     }
-  }, [images]);
+  }, [product, images]);
 
   const cartButton = (e) => {
     e.preventDefault();
@@ -54,7 +57,12 @@ function SoloProduct() {
     setMainImage(image.image_file);
   };
 
-  return isLoaded ? (
+  const editProduct = (e) => {
+    e.preventDefault()
+    navigate(`/products/${productId}/edit`)
+  }
+
+  return isLoading ? (
     <div className="loading-container">
       <div className="loading-animation"></div>
       <div className="loading-text">Loading products...</div>
@@ -87,7 +95,7 @@ function SoloProduct() {
           }
           {
             sessionUser && sessionUser.id === product?.owner_id &&
-            <button>Update Product</button>
+            <button onClick={editProduct}>Update Product</button>
           }
           {
             sessionUser && sessionUser.id === product?.owner_id &&

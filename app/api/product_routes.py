@@ -96,30 +96,30 @@ def new_product():
 @product_routes.route('/<int:product_id>', methods=['PUT'])
 @login_required
 def edit_product(product_id):
-  product = Product.query.get(product_id)
-  if not product:
-    return {
-      "message": "Product doesn't exist"
-    }, 404
+    product = Product.query.get(product_id)
+    if not product:
+        return {"message": "Product doesn't exist"}, 404
 
-  authorized = authorize(product.owner_id)
-  if authorized:
-    return authorized
+    authorized = authorize(product.owner_id)
+    if authorized:
+        return authorized
 
-  form = ProductForm()
-  form['csrf_token'].data = request.cookies['csrf_token']
-  if form.validate_on_submit():
-    product.name = form.data['name']
-    product.price = form.data['price']
-    product.description = form.data['description']
-    # product.preview_image = form.data['preview_image']
-    product.category_id = form.data['category_id']
-    db.session.commit()
-    return product.to_dict(), 200
-  else:
-    return {
-      "errors": form.errors
-    }, 400
+    form = ProductForm(is_new=False)
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        product.name = form.data['name']
+        product.price = form.data['price']
+        product.description = form.data['description']
+        product.category_id = form.data['category_id']
+
+        if 'preview_image' in request.files:
+            product.preview_image = request.files['preview_image'].read()
+
+        db.session.commit()
+        return product.to_dict(), 200
+    else:
+        return {"errors": form.errors}, 400
+
 
 @product_routes.route('/<int:product_id>', methods=['DELETE'])
 @login_required

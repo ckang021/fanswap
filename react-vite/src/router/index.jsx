@@ -6,7 +6,8 @@ import HomePage from '../components/HomePage';
 import Products from '../components/Products/Products';
 import SoloProduct from '../components/SoloProduct';
 import ManageProducts from '../components/ManageProducts/ManageProducts';
-import CreateProduct from '../components/CreateProduct/CreateProduct';
+import ProductForm from '../components/ProductForm/ProductForm';
+import EditProduct from '../components/EditProduct/EditProduct';
 
 export const router = createBrowserRouter([
   {
@@ -38,7 +39,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/products/new-product",
-        element: <CreateProduct />
+        element: <ProductForm />
+      },
+      {
+        path: "/products/:productId/edit",
+        element: <EditProduct />
       }
     ],
   },
