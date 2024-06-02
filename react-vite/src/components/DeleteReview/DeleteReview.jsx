@@ -22,7 +22,7 @@ function DeleteReview({ productId, reviewId }) {
   return (
     <div id='delete-review-container'>
       <div className='title'>
-        <h1>Delete review</h1>
+        <h1>Delete your review?</h1>
       </div>
       <div className='buttons-container'>
         <button onClick={handleSubmit}>YES</button>
