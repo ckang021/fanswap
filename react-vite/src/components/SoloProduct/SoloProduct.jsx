@@ -70,10 +70,6 @@ function SoloProduct() {
     navigate(`/products/${productId}/reviews/new`)
   }
 
-  // const imageArray = product?.preview_image
-  //   ? [{ image_file: product.preview_image }, ...(images?.ProductImages || [])]
-  //   : images?.ProductImages || [];
-
   const filteredImageArray = images?.ProductImages
     ? images.ProductImages.filter((image) => image.image_file !== product?.preview_image)
     : [];

@@ -50,7 +50,7 @@ const ReviewForm = ({ review }) => {
   };
 
   return (
-    <div className='reviewForm'>
+    <div>
       <h1>{review ? 'Update your review' : 'Create a review'}</h1>
       <form onSubmit={handleSubmit}>
         <section className='form-section'>
@@ -62,7 +62,7 @@ const ReviewForm = ({ review }) => {
           ></textarea>
           {errors.review && <p className="error">{errors.review}</p>}
         </section>
-        <section className='form-section-star'>
+        <section className='review-star-section'>
           <h3>Star Rating:</h3>
           <div onClick={() => setStarRating(1)} className={starRating >= 1 ? 'star active' : 'star'} />
           <div onClick={() => setStarRating(2)} className={starRating >= 2 ? 'star active' : 'star'} />

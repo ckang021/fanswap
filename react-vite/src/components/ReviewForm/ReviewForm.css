@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
-
-.form-section-star {
+.review-star-section {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -31,7 +29,7 @@
   cursor: pointer;
 }
 
-.star :hover {
+.star:hover {
   width: 25px;
   height: 25px;
 }
@@ -41,11 +39,9 @@
 }
 
 #star-numbers {
-  font-family: Rubik;
   text-align: center;
   border: none;
   padding: 6px;
-  background-color: #E7E7E7;
   border-radius: 20px;
 }
 

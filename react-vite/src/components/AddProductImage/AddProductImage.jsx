@@ -1,21 +1,20 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addImage } from '../../redux/image';
-import { allProdImages } from '../../redux/images';
+import { addImage, allProdImages } from '../../redux/images';
 import { useModal } from '../../context/Modal';
-import { useNavigate } from 'react-router-dom';
-
 
 function AddProductImage({ productId }) {
   const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
   const [errors, setErrors] = useState({});
   const [imageLoading, setImageLoading] = useState(false);
   const { closeModal } = useModal();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
+    const file = e.target.files[0];
+    setImage(file);
+    setImagePreview(URL.createObjectURL(file));
   };
 
   const handleSubmit = async (e) => {
@@ -31,7 +30,8 @@ function AddProductImage({ productId }) {
       setErrors(res.errors);
     } else {
       setImage(null);
-      await dispatch(allProdImages(productId))
+      setImagePreview(null);
+      await dispatch(allProdImages(productId));
       closeModal();
     }
   };
@@ -46,6 +46,11 @@ function AddProductImage({ productId }) {
             onChange={handleImageChange}
           />
         </div>
+        {imagePreview && (
+          <div>
+            <img src={imagePreview} alt="Image Preview" style={{ maxWidth: '100%', maxHeight: '300px' }} />
+          </div>
+        )}
         {errors.image && <p>{errors.image}</p>}
         <button type="submit">Upload</button>
         {imageLoading && <p>Loading...</p>}

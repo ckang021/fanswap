@@ -6,7 +6,6 @@ import './DeleteProduct.css';
 
 
 function DeleteProduct({ productId }) {
-
   const { closeModal } = useModal()
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -17,11 +16,11 @@ function DeleteProduct({ productId }) {
   }
 
   return (
-    <div id='delete-business-container'>
-      <h1 className='title'>Delete this Product?</h1>
-      <div className='buttons-container'>
-        <button className='yes-no-btn' onClick={handleSubmit}>YES</button>
-        <button className='yes-no-btn' onClick={closeModal}>NO</button>
+    <div>
+      <h1>Delete this Product?</h1>
+      <div>
+        <button onClick={handleSubmit}>YES</button>
+        <button onClick={closeModal}>NO</button>
       </div>
     </div>
   )

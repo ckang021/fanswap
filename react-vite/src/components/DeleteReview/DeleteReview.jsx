@@ -11,7 +11,6 @@ function DeleteReview({ productId, reviewId }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
     await dispatch(removeReview(reviewId))
     await dispatch(soloProduct(productId))
     await dispatch(allProdReviews(productId))
@@ -19,11 +18,11 @@ function DeleteReview({ productId, reviewId }) {
   }
 
   return (
-    <div id='delete-review-container'>
-      <div className='title'>
+    <div>
+      <div>
         <h1>Delete your review?</h1>
       </div>
-      <div className='buttons-container'>
+      <div>
         <button onClick={handleSubmit}>YES</button>
         <button onClick={closeModal}>NO</button>
       </div>
