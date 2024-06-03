@@ -46,7 +46,7 @@ function Products() {
         {productList.length === 0 ? (
           <p>No products found</p>
         ) : (
-          productList.map(product => (
+          productList.slice().reverse().map(product => (
             <div key={product.id} className="product-card">
               <NavLink to={`/products/${product.id}`}>
                 <img src={product.preview_image} alt={product.name} />
