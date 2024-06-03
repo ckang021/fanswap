@@ -30,7 +30,7 @@ function Products() {
     if (!querySearch && searchResults.length > 0) {
       dispatch(everyProducts());
     }
-  }, [dispatch, querySearch, searchResults.length]); //dispatches again so that it reloads when you go back!!
+  }, [dispatch, querySearch, searchResults.length]);
 
   const productList = querySearch ? searchResults : allProducts;
 

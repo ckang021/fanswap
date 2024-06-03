@@ -9,7 +9,6 @@ def dollar_sign_validate(form, field):
         raise ValidationError('Price must have $.')
 
 def price_greater_than_one(form, field):
-    # Remove the dollar sign for comparison
     price = field.data.lstrip('$')
     try:
         if float(price) < 1:
