@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addImage, allProdImages } from '../../redux/images';
+import { allProdImages } from '../../redux/images';
+import { addImage } from '../../redux/image';
 import { useModal } from '../../context/Modal';
 
 function AddProductImage({ productId }) {

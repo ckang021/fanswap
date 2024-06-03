@@ -1,6 +1,7 @@
 const LOAD_PRODUCTS = 'products/LOAD_PRODUCTS'
 const USER_PRODUCTS = 'products/USER_PRODUCTS'
 const SEARCH_PRODUCTS = 'products/SEARCH_PRODUCTS'
+const CATEGORY_PRODUCTS = 'products/CATEGORY_PRODUCTS'
 
 const loadProducts = (products) => ({
   type: LOAD_PRODUCTS,
@@ -14,6 +15,11 @@ const userProducts = (products) => ({
 
 const searchProducts = (products) => ({
   type: SEARCH_PRODUCTS,
+  products,
+})
+
+const categoryProducts = (products) => ({
+  type: CATEGORY_PRODUCTS,
   products,
 })
 
@@ -49,7 +55,16 @@ export const productSearch = (query) => async (dispatch) => {
   }
 }
 
-const initState = { allProducts: [], userProducts: [], search: [] }
+export const byCategoryProds = (categoryId) => async (dispatch) => {
+  const res = await fetch(`/api/products/category/${categoryId}`)
+  const data = await res.json()
+  if (res.ok) {
+    dispatch(categoryProducts(data))
+  }
+  return data
+}
+
+const initState = { allProducts: [], userProducts: [], search: [], categorizedProds: [] }
 
 const productsReducer = (state = initState, action) => {
   switch (action.type) {
@@ -59,6 +74,8 @@ const productsReducer = (state = initState, action) => {
       return { ...state, userProducts: action.products }
     case SEARCH_PRODUCTS:
       return { ...state, search: action.products }
+    case CATEGORY_PRODUCTS:
+      return { ...state, categorizedProds: action.products }
     default:
       return state;
   }

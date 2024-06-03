@@ -34,6 +34,13 @@ function Navigation() {
     e.preventDefault()
     navigate("/products")
   }
+
+  const directCategoryProds = (categoryId) => (e) => {
+    e.preventDefault()
+    navigate(`/products/category/${categoryId}`)
+  }
+
+
   return (
     <div>
       <ul className="nav-bar-top">
@@ -66,9 +73,9 @@ function Navigation() {
       </ul >
       <div className="nav-bar-bottom">
         <button onClick={directAllProds}>All Products</button>
-        <button onClick={cartButton}>Hats</button>
-        <button onClick={cartButton}>Jerseys</button>
-        <button onClick={cartButton}>Apparel</button>
+        <button onClick={directCategoryProds(1)}>Hats</button>
+        <button onClick={directCategoryProds(2)}>Jerseys</button>
+        <button onClick={directCategoryProds(3)}>Apparel</button>
       </div>
     </div>
   );

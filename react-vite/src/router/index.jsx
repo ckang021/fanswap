@@ -10,6 +10,7 @@ import ProductForm from '../components/ProductForm/ProductForm';
 import EditProduct from '../components/EditProduct/EditProduct';
 import ReviewForm from '../components/ReviewForm';
 import EditReview from '../components/EditReview';
+import CategoryProduct from '../components/CategoryProduct/CategoryProduct';
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
       {
         path: "/products/:productId/reviews/:reviewId/edit",
         element: <EditReview />
+      },
+      {
+        path: "/products/category/:categoryId",
+        element: <CategoryProduct />
       }
     ],
   },
