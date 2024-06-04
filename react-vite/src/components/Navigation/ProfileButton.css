@@ -57,3 +57,9 @@
 .user-buttons:hover {
   background-color: #154b93;
 }
+
+.login-logout-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

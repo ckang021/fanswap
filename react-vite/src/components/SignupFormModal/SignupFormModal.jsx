@@ -30,10 +30,10 @@ function SignupFormModal() {
     if (!password.trim()) {
       newErrors.password = "Password is required";
     } else if (password.length < 6 || password.length > 20) {
-      newErrors.password = "Password must be in between 6-20 characters long";
+      newErrors.password = "Password must be 6-20 characters long";
     }
     if (password !== confirmPassword) {
-      newErrors.confirmPassword = "Confirm Password field must match the Password field";
+      newErrors.confirmPassword = "Passwords don't match";
     }
 
     setErrors(newErrors);
@@ -71,73 +71,92 @@ function SignupFormModal() {
   };
 
   return (
-    <>
+    <div className="sign-up-container">
       <h1>Sign Up</h1>
-      {errors.server && <p>{errors.server}</p>}
-      <form onSubmit={handleSubmit}>
-        <label>
-          First Name
+      {errors.server && <p className="error-message">{errors.server}</p>}
+      <form onSubmit={handleSubmit} className="sign-up-form-container">
+        <div className="input-container">
           <input
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             required
+            className="signup-inputs"
           />
-        </label>
-        {errors.firstName && <p>{errors.firstName}</p>}
-        <label>
-          Last Name
+          <label htmlFor="firstName" className="floating-label">First Name</label>
+          <div className="error-message">
+            {errors.firstName && <p className="errors-signup">{errors.firstName}</p>}
+          </div>
+        </div>
+        <div className="input-container">
           <input
             type="text"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             required
+            className="signup-inputs"
           />
-        </label>
-        {errors.lastName && <p>{errors.lastName}</p>}
-        <label>
-          Email
+          <label htmlFor="lastName" className="floating-label">Last Name</label>
+          <div className="error-message">
+            {errors.lastName && <p className="errors-signup">{errors.lastName}</p>}
+          </div>
+        </div>
+        <div className="input-container">
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            className="signup-inputs"
           />
-        </label>
-        {errors.email && <p>{errors.email}</p>}
-        <label>
-          Username
+          <label htmlFor="email" className="floating-label">Email</label>
+          <div className="error-message">
+            {errors.email && <p className="errors-signup">{errors.email}</p>}
+          </div>
+        </div>
+        <div className="input-container">
           <input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
+            className="signup-inputs"
           />
-        </label>
-        {errors.username && <p>{errors.username}</p>}
-        <label>
-          Password
+          <label htmlFor="username" className="floating-label">Username</label>
+          <div className="error-message">
+            {errors.username && <p className="errors-signup">{errors.username}</p>}
+          </div>
+        </div>
+        <div className="input-container">
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            className="signup-inputs"
           />
-        </label>
-        {errors.password && <p>{errors.password}</p>}
-        <label>
-          Confirm Password
+          <label htmlFor="password" className="floating-label">Password</label>
+          <div className="error-message">
+            {errors.password && <p className="errors-signup">{errors.password}</p>}
+          </div>
+        </div>
+        <div className="input-container">
           <input
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
+            className="signup-inputs"
           />
-        </label>
-        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-        <button type="submit">Sign Up</button>
+          <label htmlFor="confirmPassword" className="floating-label">Confirm Password</label>
+          <div className="error-message">
+            {errors.confirmPassword && <p className="errors-signup">{errors.confirmPassword}</p>}
+          </div>
+        </div>
+        <button type="submit" className="login-buttons">Sign Up</button>
       </form>
-    </>
+    </div>
+
   );
 }
 
