@@ -7,16 +7,17 @@ import "./CategoryProduct.css"
 function CategoryProduct() {
   const { categoryId } = useParams()
   const dispatch = useDispatch()
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const products = useSelector(state => state.products?.categorizedProds?.products || [])
-  console.log(products)
+  // console.log(products)
 
   useEffect(() => {
-    setIsLoading(true)
     if (categoryId) {
-      dispatch(byCategoryProds(categoryId))
+      setIsLoading(true)
+      dispatch(byCategoryProds(categoryId)).then(() => {
+        setIsLoading(false)
+      })
     }
-    setIsLoading(false)
   }, [dispatch, categoryId]);
 
 
