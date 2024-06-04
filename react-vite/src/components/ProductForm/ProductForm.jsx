@@ -48,7 +48,6 @@ function ProductForm({ product }) {
     }
 
     if (!product) {
-      formData.append('is_new', true);
       setImageLoading(true);
       const data = await dispatch(createNewProduct(formData));
       setIsLoading(false);
@@ -60,7 +59,6 @@ function ProductForm({ product }) {
         navigate(`/products/${data.id}`);
       }
     } else {
-      formData.append('is_new', false);
       const data = await dispatch(updateProduct(product.id, formData));
       setIsLoading(false);
 

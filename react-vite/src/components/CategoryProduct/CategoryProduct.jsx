@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams, NavLink } from "react-router-dom"
 import { byCategoryProds } from "../../redux/products"
+import "./CategoryProduct.css"
 
 function CategoryProduct() {
   const { categoryId } = useParams()
@@ -31,7 +32,7 @@ function CategoryProduct() {
         {products.length === 0 ? (
           <p>No products found</p>
         ) : (
-          products.map(product => (
+          products.slice().reverse().map(product => (
             <div key={product.id} className="product-card">
               <NavLink to={`/products/${product.id}`}>
                 <img src={product.preview_image} alt={product.name} />

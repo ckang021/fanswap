@@ -16,18 +16,10 @@ def price_greater_than_one(form, field):
     except ValueError:
         raise ValidationError('Price must be a valid number.')
 
-class ProductForm(FlaskForm):
+class UpdateProductForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired(), Length(min=0, max=500)])
     price = StringField('Price', validators=[DataRequired(), dollar_sign_validate, price_greater_than_one])
     description = StringField('Description', validators=[DataRequired(), Length(min=0, max=500)])
     preview_image = FileField('Image File', validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
     category_id = IntegerField('Category', validators=[DataRequired()])
-    submit = SubmitField('Post New Product')
-
-    def validate_preview_image(form, field):
-        if form.is_new and not field.data:
-            raise ValidationError('Image file is required.')
-
-    def __init__(self, is_new=True, *args, **kwargs):
-        super(ProductForm, self).__init__(*args, **kwargs)
-        self.is_new = is_new
+    submit = SubmitField('Update Product')

@@ -2,8 +2,8 @@ from flask import Blueprint, request
 from flask_login import login_required, current_user
 from .aws_helpers import (upload_file_to_s3, get_unique_filename)
 from ..models import db, Product, ProductImage, Review, Category
-from ..forms import ProductForm, ProductImageForm, ReviewForm
-import base64
+from ..forms import CreateProductForm, UpdateProductForm, ProductImageForm, ReviewForm
+
 
 product_routes = Blueprint('product', __name__)
 
@@ -58,7 +58,7 @@ def single_product(product_id):
 @product_routes.route('/new-product', methods=['POST'])
 @login_required
 def new_product():
-  form = ProductForm()
+  form = CreateProductForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
   if form.validate_on_submit():
@@ -103,7 +103,7 @@ def edit_product(product_id):
     if authorized:
         return authorized
 
-    form = ProductForm(is_new=False)
+    form = UpdateProductForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         product.name = form.data['name']
