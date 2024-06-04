@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { productSearch } from "../../redux/products";
 import ProfileButton from "./ProfileButton";
-import "./Navigation.css";
 import { FaShoppingCart } from "react-icons/fa";
 import navLogo from "./navlogoWhite.png"
-
+import { FaSearch } from "react-icons/fa";
+import "./Navigation.css";
 
 function Navigation() {
   const [search, setSearch] = useState('')
@@ -52,30 +52,29 @@ function Navigation() {
           </li>
 
           <li>
-            <form onSubmit={submitSearch}>
+            <form onSubmit={submitSearch} className="search-bar-container">
+              <FaSearch id="search-bar-button" onClick={submitSearch} />
               <input
                 type="text"
                 placeholder="Search for products"
                 value={search}
                 onChange={handleSearch}
+                className="search-bar"
               />
-              <button>Search</button>
             </form>
           </li>
 
-          <li id="profile-cart-button">
-            <button onClick={cartButton}>
-              <FaShoppingCart />
-            </button>
+          <li id="profile-cart-button-container">
+            <FaShoppingCart className="profile-cart-buttons" onClick={cartButton} />
             <ProfileButton />
           </li>
         </div>
       </ul >
       <div className="nav-bar-bottom">
-        <button onClick={directAllProds}>All Products</button>
-        <button onClick={directCategoryProds(1)}>Hats</button>
-        <button onClick={directCategoryProds(2)}>Jerseys</button>
-        <button onClick={directCategoryProds(3)}>Apparel</button>
+        <button onClick={directAllProds} className="nav-bottom-buttons"><span>All Products</span></button>
+        <button onClick={directCategoryProds(1)} className="nav-bottom-buttons"><span>Hats</span></button>
+        <button onClick={directCategoryProds(2)} className="nav-bottom-buttons"><span>Jerseys</span></button>
+        <button onClick={directCategoryProds(3)} className="nav-bottom-buttons"><span>Apparel</span></button>
       </div>
     </div>
   );

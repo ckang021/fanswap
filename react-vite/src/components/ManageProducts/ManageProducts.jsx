@@ -38,7 +38,7 @@ function ManageProducts() {
           userProducts.map(product => (
             <div key={product.id} className="product-card">
               <NavLink to={`/products/${product.id}`}>
-                <img src={product.preview_image} alt={product.name} />
+                <img src={product.preview_image} alt={product.name} className="product-image" />
                 <div>
                   <p>{product.name}</p>
                   <p>{product.price}</p>

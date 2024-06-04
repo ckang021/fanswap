@@ -26,3 +26,21 @@
     transform: rotate(360deg);
   }
 }
+
+.all-products-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+}
+
+.products-layout-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+
+}
+
+.product-image {
+  width: 330px;
+}

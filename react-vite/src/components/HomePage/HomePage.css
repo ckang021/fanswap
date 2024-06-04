@@ -1,3 +1,30 @@
+.home-main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 70px;
+}
+
+.home-sub-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .home-images {
   width: 1450px;
+}
+
+.home-buttons {
+  border: none;
+  padding: 20px;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.home-buttons:hover {
+  background-color: #D52B19;
+  color: white;
 }

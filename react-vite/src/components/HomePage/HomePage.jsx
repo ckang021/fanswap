@@ -4,23 +4,29 @@ import "./HomePage.css"
 function HomePage() {
   const navigate = useNavigate()
 
-  const toProducts = () => {
+  const toProducts = (e) => {
+    e.preventDefault()
     navigate('/products')
   }
+
+  const toHats = (e) => {
+    e.preventDefault()
+    navigate("/products/category/1")
+  }
   return (
-    <div>
-      <div>
+    <div className="home-main-container">
+      <div className="home-sub-container">
         <img src="https://fanswapbucket.s3.us-west-1.amazonaws.com/main-image.jpg" alt="" className="home-images" />
         <button className="home-buttons" onClick={toProducts}>
           Check out the Gear!
         </button>
       </div>
-      <div>
+      <div className="home-sub-container">
         <img src="https://fanswapbucket.s3.us-west-1.amazonaws.com/main-image-2.jpg" alt="" className="home-images" />
+        <button className="home-buttons" onClick={toHats}>
+          Check out the Hats!
+        </button>
       </div>
-      <button className="home-buttons" onClick={toProducts}>
-        Check out the Gear!
-      </button>
     </div>
 
   )

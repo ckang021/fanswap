@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { everyProducts, productSearch } from "../../redux/products";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams, NavLink } from "react-router-dom";
+import { FaStar } from "react-icons/fa";
 import "./Products.css";
 
 function Products() {
@@ -49,11 +50,11 @@ function Products() {
           productList.slice().reverse().map(product => (
             <div key={product.id} className="product-card">
               <NavLink to={`/products/${product.id}`}>
-                <img src={product.preview_image} alt={product.name} />
+                <img src={product.preview_image} alt={product.name} className="product-image" />
                 <div>
                   <p>{product.name}</p>
                   <p>{product.price}</p>
-                  <p>{product.rating}</p>
+                  <p><FaStar />{product.rating}</p>
                 </div>
               </NavLink>
             </div>

@@ -57,25 +57,30 @@ function ProfileButton() {
 
   return (
     <>
-      <button onClick={toggleMenu}>
+      <button onClick={toggleMenu} className="profile-cart-buttons">
         <FaUserCircle />
       </button>
       {showMenu && (
         <ul className={"profile-dropdown"} ref={ulRef}>
           {user ? (
-            <>
-              <li>{user.username}</li>
-              <li>{user.email}</li>
-              <li>
-                <button onClick={createProduct}>Create Product</button>
-              </li>
-              <li>
-                <button onClick={manageProducts}>Manage Products</button>
-              </li>
-              <li>
-                <button onClick={logout}>Log Out</button>
-              </li>
-            </>
+            <div className="profile-container">
+              <div className="profile-upper-container">
+                <li id="hello-user">Hello, {user.first_name}!</li>
+                <li id="user-email">{user.email}</li>
+              </div>
+              <div className="profile-lower-container">
+                <p id="user-menu">User Menu:</p>
+                <li>
+                  <button onClick={createProduct} className="user-buttons">Create Product</button>
+                </li>
+                <li>
+                  <button onClick={manageProducts} className="user-buttons">Manage Products</button>
+                </li>
+                <li>
+                  <button onClick={logout} className="user-buttons">Log Out</button>
+                </li>
+              </div>
+            </div>
           ) : (
             <>
               <OpenModalMenuItem

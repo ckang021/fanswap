@@ -1,19 +1,59 @@
 .profile-dropdown {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
   position: absolute;
   background-color: white;
   border-radius: 10px;
   padding: 15px 25px;
   z-index: 1;
-  right: 20px;
-  top: 65px;
+  right: 25px;
+  top: 70px;
   font-size: 15px;
-  font-family: Rubik;
   color: black;
   list-style-type: none;
   box-shadow: 0 2px 15px black;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.profile-upper-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-lower-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#user-menu {
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+#hello-user {
+  font-weight: 600;
+}
+
+#user-email {
+  font-size: 10px;
+}
+
+.user-buttons {
+  background-color: #08203F;
+  border: none;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.user-buttons:hover {
+  background-color: #154b93;
 }
