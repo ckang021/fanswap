@@ -57,7 +57,7 @@ const ReviewForm = ({ review }) => {
   };
 
   return (
-    <div>
+    <div className='review-form-container'>
       <h1>{review ? 'Update your review' : 'Create a review'}</h1>
       <form onSubmit={handleSubmit}>
         <section className='form-section'>

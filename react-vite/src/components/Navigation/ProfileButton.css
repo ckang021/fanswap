@@ -63,3 +63,8 @@
   flex-direction: column;
   gap: 10px;
 }
+
+.login-logout-buttons {
+  background-color: #154b93;
+  cursor: pointer;
+}

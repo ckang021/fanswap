@@ -45,3 +45,13 @@
   flex-direction: row;
   align-items: center;
 }
+
+.modal-buttons {
+  cursor: pointer;
+  background-color: #154b93;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+}
