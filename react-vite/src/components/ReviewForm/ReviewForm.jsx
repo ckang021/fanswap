@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addReview, updateReview } from '../../redux/review';
+import { FaStar } from 'react-icons/fa';
 import './ReviewForm.css';
 
 const ReviewForm = ({ review }) => {
@@ -12,6 +13,7 @@ const ReviewForm = ({ review }) => {
 
   const [reviewText, setReviewText] = useState(review ? review.review : '');
   const [starRating, setStarRating] = useState(review ? review.star_rating : 1);
+  const [activeRating, setActiveRating] = useState(review ? review.star_rating : 0);
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
@@ -49,6 +51,11 @@ const ReviewForm = ({ review }) => {
     }
   };
 
+  const handleClick = (num) => {
+    setActiveRating(num);
+    setStarRating(num);
+  };
+
   return (
     <div>
       <h1>{review ? 'Update your review' : 'Create a review'}</h1>
@@ -64,11 +71,48 @@ const ReviewForm = ({ review }) => {
         </section>
         <section className='review-star-section'>
           <h3>Star Rating:</h3>
-          <div onClick={() => setStarRating(1)} className={starRating >= 1 ? 'star active' : 'star'} />
-          <div onClick={() => setStarRating(2)} className={starRating >= 2 ? 'star active' : 'star'} />
-          <div onClick={() => setStarRating(3)} className={starRating >= 3 ? 'star active' : 'star'} />
-          <div onClick={() => setStarRating(4)} className={starRating >= 4 ? 'star active' : 'star'} />
-          <div onClick={() => setStarRating(5)} className={starRating >= 5 ? 'star active' : 'star'} />
+          <div className="stars">
+            <FaStar
+              size={20}
+              color={activeRating >= 1 ? "gold" : "rgb(75, 75, 75)"}
+              onClick={() => handleClick(1)}
+              onMouseEnter={() => setActiveRating(1)}
+              onMouseLeave={() => setActiveRating(starRating)}
+              className={activeRating >= 1 ? "star active" : "star"}
+            />
+            <FaStar
+              size={20}
+              color={activeRating >= 2 ? "gold" : "rgb(75, 75, 75)"}
+              onClick={() => handleClick(2)}
+              onMouseEnter={() => setActiveRating(2)}
+              onMouseLeave={() => setActiveRating(starRating)}
+              className={activeRating >= 2 ? "star active" : "star"}
+            />
+            <FaStar
+              size={20}
+              color={activeRating >= 3 ? "gold" : "rgb(75, 75, 75)"}
+              onClick={() => handleClick(3)}
+              onMouseEnter={() => setActiveRating(3)}
+              onMouseLeave={() => setActiveRating(starRating)}
+              className={activeRating >= 3 ? "star active" : "star"}
+            />
+            <FaStar
+              size={20}
+              color={activeRating >= 4 ? "gold" : "rgb(75, 75, 75)"}
+              onClick={() => handleClick(4)}
+              onMouseEnter={() => setActiveRating(4)}
+              onMouseLeave={() => setActiveRating(starRating)}
+              className={activeRating >= 4 ? "star active" : "star"}
+            />
+            <FaStar
+              size={20}
+              color={activeRating >= 5 ? "gold" : "rgb(75, 75, 75)"}
+              onClick={() => handleClick(5)}
+              onMouseEnter={() => setActiveRating(5)}
+              onMouseLeave={() => setActiveRating(starRating)}
+              className={activeRating >= 5 ? "star active" : "star"}
+            />
+          </div>
           <input
             type="number"
             id='star-numbers'
