@@ -1,0 +1,39 @@
+.delete-image-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.delete-image-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.image-deletion-area {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.buttons-extra {
+  cursor: pointer;
+  background-color: #154b93;
+  color: white;
+  border: none;
+  padding: 7px 10px;
+  font-size: 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  height: fit-content;
+}
+
+.buttons-extra:hover {
+  background-color: #0f3362;
+}
+
+#note {
+  color: red;
+  font-size: 12px;
+}

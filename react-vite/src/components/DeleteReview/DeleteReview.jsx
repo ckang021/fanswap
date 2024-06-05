@@ -18,13 +18,13 @@ function DeleteReview({ productId, reviewId }) {
   }
 
   return (
-    <div>
+    <div className='delete-review-container'>
       <div>
         <h1>Delete your review?</h1>
       </div>
-      <div>
-        <button onClick={handleSubmit}>YES</button>
-        <button onClick={closeModal}>NO</button>
+      <div className='delete-review-buttons'>
+        <button onClick={handleSubmit} className='modal-buttons'>YES</button>
+        <button onClick={closeModal} className='modal-buttons'>NO</button>
       </div>
     </div>
   )

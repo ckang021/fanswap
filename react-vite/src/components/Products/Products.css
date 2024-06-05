@@ -41,6 +41,35 @@
 
 }
 
+.product-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.product-price {
+  font-weight: bolder;
+}
+
 .product-image {
   width: 330px;
+}
+
+.product-rating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+#product-star {
+  color: gold;
 }

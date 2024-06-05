@@ -35,13 +35,13 @@ function CategoryProduct() {
           <p>No products found</p>
         ) : (
           products.slice().reverse().map(product => (
-            <div key={product.id} className="product-card">
-              <NavLink to={`/products/${product.id}`}>
+            <div key={product.id}>
+              <NavLink to={`/products/${product.id}`} className="product-card">
                 <img src={product.preview_image} alt={product.name} className="product-image" />
-                <div>
-                  <p>{product.name}</p>
-                  <p>{product.price}</p>
-                  <p><FaStar />{product.rating}</p>
+                <div className="product-details">
+                  <p className="product-price">{product.price}</p>
+                  <p className="product-name">{product.name}</p>
+                  <p className="product-rating"><FaStar id="product-star" />{product.rating}</p>
                 </div>
               </NavLink>
             </div>

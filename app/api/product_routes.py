@@ -106,13 +106,26 @@ def edit_product(product_id):
     form = UpdateProductForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        image = form.data['preview_image']
+        url = None
+        print('IMAGE ===> ', image)
+
+        if image:
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            if "url" not in upload:
+                return {
+                    "error": "Image upload failed, not a valid file."
+                }, 400
+            url = upload['url']
+
         product.name = form.data['name']
         product.price = form.data['price']
         product.description = form.data['description']
         product.category_id = form.data['category_id']
 
-        if 'preview_image' in request.files:
-            product.preview_image = request.files['preview_image'].read()
+        if url:
+            product.preview_image = url
 
         db.session.commit()
         return product.to_dict(), 200

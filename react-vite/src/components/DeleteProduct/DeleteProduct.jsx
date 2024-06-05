@@ -16,11 +16,11 @@ function DeleteProduct({ productId }) {
   }
 
   return (
-    <div>
+    <div className='delete-product-container'>
       <h1>Delete this Product?</h1>
-      <div>
-        <button onClick={handleSubmit}>YES</button>
-        <button onClick={closeModal}>NO</button>
+      <div className='delete-product-buttons'>
+        <button onClick={handleSubmit} className='modal-buttons'>YES</button>
+        <button onClick={closeModal} className='modal-buttons'>NO</button>
       </div>
     </div>
   )

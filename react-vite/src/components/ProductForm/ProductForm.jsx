@@ -75,33 +75,33 @@ function ProductForm({ product }) {
     <div className="product-form-container">
       <h2>{product ? 'Edit Product' : 'Create New Product'}</h2>
       <form onSubmit={handleSubmit} encType="multipart/form-data" className='product-form-fields'>
-        <label>
+        <label className='product-form-labels'>
           Name:
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+          <input type="text" value={name} className='addon-inputs product-form-inputs' onChange={(e) => setName(e.target.value)} required />
         </label>
         <div className='error-container'>
           {errors.name && <p className='errors'>{errors.name}</p>}
         </div>
 
-        <label>
+        <label className='product-form-labels'>
           Price:
-          <input type="text" value={price} onChange={(e) => setPrice(e.target.value)} required />
+          <input type="text" value={price} className='addon-inputs product-form-inputs' onChange={(e) => setPrice(e.target.value)} required />
         </label>
         <div className='error-container'>
           {errors.price && <p className='errors'>{errors.price}</p>}
         </div>
 
-        <label>
+        <label className='product-form-labels'>
           Description:
-          <textarea value={description} onChange={(e) => setDescription(e.target.value)} required></textarea>
+          <textarea value={description} className='product-form-inputs' onChange={(e) => setDescription(e.target.value)} required></textarea>
         </label>
         <div className='error-container'>
           {errors.description && <p className='errors'>{errors.description}</p>}
         </div>
 
-        <label>
+        <label className='product-form-labels'>
           Category:
-          <select value={categoryId} onChange={(e) => setCategoryId(e.target.value)}>
+          <select value={categoryId} className='product-form-inputs' onChange={(e) => setCategoryId(e.target.value)}>
             <option value="">Select a category</option>
             <option value="1">Hats</option>
             <option value="2">Jerseys</option>
@@ -111,25 +111,21 @@ function ProductForm({ product }) {
         <div className='error-container'>
           {errors.category_id && <p className='errors'>{errors.category_id}</p>}
         </div>
-
-        {previewImageUrl && (
+        <div className='preview-img-big-container'>
+          <label className='product-form-labels'>
+            Preview Image:
+            <p className='accepted-formats'>Accepted formats: .pdf, .png, .jpg, .jpeg, .gif </p>
+            <input type="file" onChange={handleImageChange} />
+          </label>
           <div className="preview-image-container">
-            <img src={previewImageUrl} alt="Preview" id='preview-image-upload' />
+            {previewImageUrl && (<img src={previewImageUrl} alt="Preview" id='preview-image-upload' />)}
           </div>
-        )}
-        {!product && (
-          <>
-            <label>
-              Preview Image:
-              <input type="file" onChange={handleImageChange} />
-            </label>
-            <div className='error-container'>
-              {errors.preview_image && <p className='errors'>{errors.preview_image}</p>}
-            </div>
-          </>
-        )}
-        <button type="submit">{product ? 'Update Product' : 'Create Product'}</button>
-        {imageLoading && !errors && <p>Loading...</p>}
+        </div>
+        <div className='error-container'>
+          {errors.preview_image && <p className='errors'>{errors.preview_image}</p>}
+        </div>
+        <button type="submit" className='modal-buttons'>{product ? 'Update Product' : 'Create Product'}</button>
+        {imageLoading && !errors && <p className='loading-message visible'>Loading...</p>}
       </form>
     </div>
   );

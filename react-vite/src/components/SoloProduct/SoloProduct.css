@@ -16,6 +16,12 @@
   flex-direction: column;
   gap: 10px;
   padding: 50px;
+  width: 800px;
+}
+
+.solo-product-price {
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .main-image-pd {
@@ -26,24 +32,64 @@
   display: flex;
 }
 
+.sub-image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
 .sub-image-pd {
-  height: 200px;
+  height: 150px;
   cursor: pointer;
-  transition: border 0.3s;
+  transition: border 0.3s ease;
 }
 
 .selected-image {
   border: 2px solid #007bff;
+  border-radius: 10px;
+}
+
+.preview-image-label {
+  background-color: gray;
+  color: white;
+  font-size: 12px;
+  padding: 8px;
+  border-radius: 20px;
+}
+
+.manage-products-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.product-reviews {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px black solid;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .reviewer-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
   padding: 5px;
+  margin-bottom: 10px;
+}
+
+.reviewer-name {
+  font-weight: 600;
 }
 
 .star-rating {
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 7px;
 }
 
 .modal-buttons {
@@ -51,7 +97,21 @@
   background-color: #154b93;
   color: white;
   border: none;
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 8px 15px;
+  font-size: 14px;
   border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.modal-buttons:hover {
+  background-color: #0f3362;
+}
+
+.review-edit-delete-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+#star {
+  color: gold;
 }
