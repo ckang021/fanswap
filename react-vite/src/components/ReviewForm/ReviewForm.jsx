@@ -59,13 +59,14 @@ const ReviewForm = ({ review }) => {
   return (
     <div className='review-form-container'>
       <h1>{review ? 'Update your review' : 'Create a review'}</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='review-form'>
         <section className='form-section'>
-          <h3>Your review</h3>
+          <h3>Your review:</h3>
           <textarea
             value={reviewText}
             onChange={(e) => setReviewText(e.target.value)}
             placeholder='Write your review here'
+            className='text-area-review'
           ></textarea>
           {errors.review && <p className="error">{errors.review}</p>}
         </section>
@@ -123,7 +124,7 @@ const ReviewForm = ({ review }) => {
           />
           {errors.star_rating && <p className="error">{errors.star_rating}</p>}
         </section>
-        <button type='submit'>
+        <button type='submit' className='modal-buttons'>
           {review ? 'Update Review' : 'Create Review'}
         </button>
       </form>
