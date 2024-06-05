@@ -16,6 +16,7 @@ function ProductForm({ product }) {
   const [errors, setErrors] = useState({});
   const [imageLoading, setImageLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [fileName, setFileName] = useState('');
   const sessionUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
@@ -30,6 +31,7 @@ function ProductForm({ product }) {
     if (file) {
       setPreviewImage(file);
       setPreviewImageUrl(URL.createObjectURL(file));
+      setFileName(file.name);
     }
   };
 
@@ -115,7 +117,21 @@ function ProductForm({ product }) {
           <label className='product-form-labels'>
             Preview Image:
             <p className='accepted-formats'>Accepted formats: .pdf, .png, .jpg, .jpeg, .gif </p>
-            <input type="file" onChange={handleImageChange} />
+            <input
+              type="file"
+              id="file-input"
+              onChange={handleImageChange}
+              style={{ display: 'none' }}
+            />
+            <button
+              type="button"
+              id="custom-file-button"
+              className='custom-file-button'
+              onClick={() => document.getElementById('file-input').click()}
+            >
+              Choose File
+            </button>
+            <span id="file-name">{fileName}</span>
           </label>
           <div className="preview-image-container">
             {previewImageUrl && (<img src={previewImageUrl} alt="Preview" id='preview-image-upload' />)}

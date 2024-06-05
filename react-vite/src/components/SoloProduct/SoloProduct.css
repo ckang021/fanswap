@@ -30,6 +30,7 @@
 
 .sub-image-bottom {
   display: flex;
+  width: 500px;
 }
 
 .sub-image-container {
@@ -40,7 +41,7 @@
 }
 
 .sub-image-pd {
-  height: 150px;
+  height: 120px;
   cursor: pointer;
   transition: border 0.3s ease;
 }

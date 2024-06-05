@@ -10,6 +10,7 @@ function AddProductImage({ productId }) {
   const [imagePreview, setImagePreview] = useState(null);
   const [errors, setErrors] = useState({});
   const [imageLoading, setImageLoading] = useState(false);
+  const [fileName, setFileName] = useState('');
   const { closeModal } = useModal();
   const dispatch = useDispatch();
 
@@ -28,10 +29,12 @@ function AddProductImage({ productId }) {
       setErrors({ image: error });
       setImage(null);
       setImagePreview(null);
+      setFileName('');
     } else {
       setErrors({});
       setImage(file);
       setImagePreview(URL.createObjectURL(file));
+      setFileName(file.name);
     }
   };
 
@@ -53,6 +56,7 @@ function AddProductImage({ productId }) {
     } else {
       setImage(null);
       setImagePreview(null);
+      setFileName('');
       await dispatch(allProdImages(productId));
       closeModal();
     }
@@ -65,8 +69,19 @@ function AddProductImage({ productId }) {
           <p>Accepted formats: .pdf, .png, .jpg, .jpeg, .gif </p>
           <input
             type="file"
+            id="file-input"
             onChange={handleImageChange}
+            style={{ display: 'none' }}
           />
+          <button
+            type="button"
+            id="custom-file-button"
+            className='custom-file-button'
+            onClick={() => document.getElementById('file-input').click()}
+          >
+            Choose File
+          </button>
+          <span id="file-name">{fileName}</span>
         </div>
         <div className='image-preview-add-frame'>
           {imagePreview && (<img src={imagePreview} alt="Image Preview" className='image-preview-add' />)}
