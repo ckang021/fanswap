@@ -4,7 +4,6 @@ from .aws_helpers import (upload_file_to_s3, get_unique_filename)
 from ..models import db, Product, ProductImage, Review, Category
 from ..forms import CreateProductForm, UpdateProductForm, ProductImageForm, ReviewForm
 
-
 product_routes = Blueprint('product', __name__)
 
 def authorize(owner_id):

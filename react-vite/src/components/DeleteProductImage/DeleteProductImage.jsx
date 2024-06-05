@@ -11,7 +11,6 @@ function DeleteProductImage({ productId }) {
   const dispatch = useDispatch()
   const [imgArr, setImgArr] = useState([])
   const images = useSelector(state => state.images?.images)
-  const previewImg = useSelector(state => console.log("GRABBING THE PREVIEW IMAGE", state.product?.product?.product?.preview_image))
 
   useEffect(() => {
     dispatch(allProdImages(productId))
