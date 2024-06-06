@@ -81,7 +81,9 @@ const ReviewForm = ({ review }) => {
               placeholder='Write your review here'
               className='text-area-review'
             ></textarea>
-            {errors.review && <p className="error">{errors.review}</p>}
+            <div className='errors-reviews'>
+              {errors.review && <p className="errors">{errors.review}</p>}
+            </div>
           </section>
           <section className='review-star-section'>
             <h3>Star Rating:</h3>
@@ -135,7 +137,7 @@ const ReviewForm = ({ review }) => {
               min="1"
               max="5"
             />
-            {errors.star_rating && <p className="error">{errors.star_rating}</p>}
+            {errors.star_rating && <p className="errors">{errors.star_rating}</p>}
           </section>
           <button type='submit' className='modal-buttons'>
             {review ? 'Update Review' : 'Create Review'}

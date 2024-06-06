@@ -23,6 +23,11 @@
   align-items: center;
 }
 
+.errors-reviews {
+  position: relative;
+  height: 20px;
+}
+
 .text-area-review {
   width: 300px;
   height: 100px;
