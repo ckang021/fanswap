@@ -21,7 +21,7 @@ def all_products():
 
     if search_name:
         query = query.filter(
-            db.or_(
+            db.or_( #and see if you can do both products and categories together
                 Product.name.ilike(f'%{search_name}%'),
                 Category.name.ilike(f'%{search_name}%')
             )
