@@ -1,3 +1,13 @@
+.great-div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ads {
+  padding: 10px;
+  cursor: pointer;
+}
+
 .review-form-container {
   display: flex;
   flex-direction: column;

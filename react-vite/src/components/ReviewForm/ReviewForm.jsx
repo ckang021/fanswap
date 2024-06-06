@@ -3,6 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addReview, updateReview } from '../../redux/review';
 import { FaStar } from 'react-icons/fa';
+import draftQueens from "./draftqueens-longer.png"
+import fanSwap from "./fanswap-longer.png"
 import './ReviewForm.css';
 
 const ReviewForm = ({ review }) => {
@@ -56,79 +58,96 @@ const ReviewForm = ({ review }) => {
     setStarRating(num);
   };
 
+  const homePage = (e) => {
+    e.preventDefault()
+    navigate("/products")
+  }
+
   return (
-    <div className='review-form-container'>
-      <h1>{review ? 'Update your review' : 'Create a review'}</h1>
-      <form onSubmit={handleSubmit} className='review-form'>
-        <section className='form-section'>
-          <h3>Your review:</h3>
-          <textarea
-            value={reviewText}
-            onChange={(e) => setReviewText(e.target.value)}
-            placeholder='Write your review here'
-            className='text-area-review'
-          ></textarea>
-          {errors.review && <p className="error">{errors.review}</p>}
-        </section>
-        <section className='review-star-section'>
-          <h3>Star Rating:</h3>
-          <div className="stars">
-            <FaStar
-              size={20}
-              color={activeRating >= 1 ? "gold" : "rgb(75, 75, 75)"}
-              onClick={() => handleClick(1)}
-              onMouseEnter={() => setActiveRating(1)}
-              onMouseLeave={() => setActiveRating(starRating)}
-              className={activeRating >= 1 ? "star active" : "star"}
+    <div className='great-div'>
+      <div className='ads'>
+        <a href="https://draft-queens.onrender.com/" target='_blank'>
+          <img src={draftQueens} alt="" />
+        </a>
+      </div>
+      <div className='review-form-container'>
+        <h1>{review ? 'Update your review' : 'Create a review'}</h1>
+        <form onSubmit={handleSubmit} className='review-form'>
+          <section className='form-section'>
+            <h3>Your review:</h3>
+            <textarea
+              value={reviewText}
+              onChange={(e) => setReviewText(e.target.value)}
+              placeholder='Write your review here'
+              className='text-area-review'
+            ></textarea>
+            {errors.review && <p className="error">{errors.review}</p>}
+          </section>
+          <section className='review-star-section'>
+            <h3>Star Rating:</h3>
+            <div className="stars">
+              <FaStar
+                size={20}
+                color={activeRating >= 1 ? "gold" : "rgb(75, 75, 75)"}
+                onClick={() => handleClick(1)}
+                onMouseEnter={() => setActiveRating(1)}
+                onMouseLeave={() => setActiveRating(starRating)}
+                className={activeRating >= 1 ? "star active" : "star"}
+              />
+              <FaStar
+                size={20}
+                color={activeRating >= 2 ? "gold" : "rgb(75, 75, 75)"}
+                onClick={() => handleClick(2)}
+                onMouseEnter={() => setActiveRating(2)}
+                onMouseLeave={() => setActiveRating(starRating)}
+                className={activeRating >= 2 ? "star active" : "star"}
+              />
+              <FaStar
+                size={20}
+                color={activeRating >= 3 ? "gold" : "rgb(75, 75, 75)"}
+                onClick={() => handleClick(3)}
+                onMouseEnter={() => setActiveRating(3)}
+                onMouseLeave={() => setActiveRating(starRating)}
+                className={activeRating >= 3 ? "star active" : "star"}
+              />
+              <FaStar
+                size={20}
+                color={activeRating >= 4 ? "gold" : "rgb(75, 75, 75)"}
+                onClick={() => handleClick(4)}
+                onMouseEnter={() => setActiveRating(4)}
+                onMouseLeave={() => setActiveRating(starRating)}
+                className={activeRating >= 4 ? "star active" : "star"}
+              />
+              <FaStar
+                size={20}
+                color={activeRating >= 5 ? "gold" : "rgb(75, 75, 75)"}
+                onClick={() => handleClick(5)}
+                onMouseEnter={() => setActiveRating(5)}
+                onMouseLeave={() => setActiveRating(starRating)}
+                className={activeRating >= 5 ? "star active" : "star"}
+              />
+            </div>
+            <input
+              type="number"
+              id='star-numbers'
+              value={starRating}
+              onChange={(e) => setStarRating(Number(e.target.value))}
+              min="1"
+              max="5"
             />
-            <FaStar
-              size={20}
-              color={activeRating >= 2 ? "gold" : "rgb(75, 75, 75)"}
-              onClick={() => handleClick(2)}
-              onMouseEnter={() => setActiveRating(2)}
-              onMouseLeave={() => setActiveRating(starRating)}
-              className={activeRating >= 2 ? "star active" : "star"}
-            />
-            <FaStar
-              size={20}
-              color={activeRating >= 3 ? "gold" : "rgb(75, 75, 75)"}
-              onClick={() => handleClick(3)}
-              onMouseEnter={() => setActiveRating(3)}
-              onMouseLeave={() => setActiveRating(starRating)}
-              className={activeRating >= 3 ? "star active" : "star"}
-            />
-            <FaStar
-              size={20}
-              color={activeRating >= 4 ? "gold" : "rgb(75, 75, 75)"}
-              onClick={() => handleClick(4)}
-              onMouseEnter={() => setActiveRating(4)}
-              onMouseLeave={() => setActiveRating(starRating)}
-              className={activeRating >= 4 ? "star active" : "star"}
-            />
-            <FaStar
-              size={20}
-              color={activeRating >= 5 ? "gold" : "rgb(75, 75, 75)"}
-              onClick={() => handleClick(5)}
-              onMouseEnter={() => setActiveRating(5)}
-              onMouseLeave={() => setActiveRating(starRating)}
-              className={activeRating >= 5 ? "star active" : "star"}
-            />
-          </div>
-          <input
-            type="number"
-            id='star-numbers'
-            value={starRating}
-            onChange={(e) => setStarRating(Number(e.target.value))}
-            min="1"
-            max="5"
-          />
-          {errors.star_rating && <p className="error">{errors.star_rating}</p>}
-        </section>
-        <button type='submit' className='modal-buttons'>
-          {review ? 'Update Review' : 'Create Review'}
-        </button>
-      </form>
+            {errors.star_rating && <p className="error">{errors.star_rating}</p>}
+          </section>
+          <button type='submit' className='modal-buttons'>
+            {review ? 'Update Review' : 'Create Review'}
+          </button>
+        </form>
+      </div>
+
+      <div className='ads'>
+        <img src={fanSwap} alt="" onClick={homePage} />
+      </div>
     </div>
+
   );
 };
 
