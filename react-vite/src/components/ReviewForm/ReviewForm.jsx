@@ -14,7 +14,7 @@ const ReviewForm = ({ review }) => {
   const user = useSelector(state => state.session.user);
 
   const [reviewText, setReviewText] = useState(review ? review.review : '');
-  const [starRating, setStarRating] = useState(review ? review.star_rating : 1);
+  const [starRating, setStarRating] = useState(review ? review.star_rating : 0);
   const [activeRating, setActiveRating] = useState(review ? review.star_rating : 0);
   const [errors, setErrors] = useState({});
 
