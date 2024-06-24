@@ -1,8 +1,33 @@
-# Flask React Project
+![navlogoWhite](https://github.com/ckang021/fanswap/assets/104466769/3d118195-8d6c-4d78-baf2-5823452d35ec)
 
-This is the starter for the Flask React project.
+## Fanswap
 
-## Getting started
+Fanswap is inspired by Fanatics, well known as a sports merchandise e-commerce application. 
+This application allows users to create their account and peruse existing users' products, searched by varying categories or by name
+The user can use full CRUD operations for reviews and leave ratings for specific products. The user can also manage products and use full CRUD operations on the products they post. 
+
+[Live Site](https://fanswap.onrender.com)
+
+## Screenshots:
+
+## Technologies Used:
+![](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
+![](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+
+## Future Features:
+
+- Cart 🛒
+- Favorites 🔖
+- Filters ⌛️
+- Purchasing 💸
+
+## Getting started:
 
 1. Clone this repository (only this branch).
 
@@ -52,7 +77,7 @@ This is the starter for the Flask React project.
    folder whenever you change your code, keeping the production version up to
    date.
 
-## Deployment through Render.com
+## Deployment through Render.com:
 
 First, recall that Vite is a development dependency, so it will not be used in
 production. This means that you must already have the __dist__ folder located in
@@ -129,3 +154,4 @@ main, always keeping it up to date.
 
 [Render.com]: https://render.com/
 [Dashboard]: https://dashboard.render.com/
+
