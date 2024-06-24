@@ -9,6 +9,9 @@ The user can use full CRUD operations for reviews and leave ratings for specific
 [Live Site](https://fanswap.onrender.com)
 
 ## Screenshots:
+![ScreenRecording2024-06-23at7 10 42PM-ezgif com-video-to-gif-converter](https://github.com/ckang021/fanswap/assets/104466769/4a5b2eb1-64a4-464a-baed-893355dfd6b4)
+![ScreenRecording2024-06-23at7 14 54PM-ezgif com-video-to-gif-converter](https://github.com/ckang021/fanswap/assets/104466769/855c758b-ba5a-4c32-8c50-44344aae5b8a)
+![ScreenRecording2024-06-23at7 17 21PM-ezgif com-video-to-gif-converter](https://github.com/ckang021/fanswap/assets/104466769/dd3ff919-cf37-4a41-82a5-944079172ec5)
 
 ## Technologies Used:
 ![](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
